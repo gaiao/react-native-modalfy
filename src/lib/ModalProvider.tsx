@@ -133,18 +133,19 @@ const ModalProvider = ({ children, stack }: Props) => {
     }
   }, [contextValue.stack.openedItems.size])
 
+  const modalStack = (
+    <ModalStack
+      {...contextValue}
+      clearListeners={clearListeners}
+      registerListener={registerListener}
+      eventListeners={modalEventListeners}
+      removeClosingAction={ModalState.removeClosingAction}
+    />
+  )
+  
   return (
     <ModalContext.Provider value={contextValue}>
-      <>
-        {children}
-        <ModalStack
-          {...contextValue}
-          clearListeners={clearListeners}
-          registerListener={registerListener}
-          eventListeners={modalEventListeners}
-          removeClosingAction={ModalState.removeClosingAction}
-        />
-      </>
+      {Platform.OS === 'ios' ? <FullWindowOverlay>{modalStack}</FullWindowOverlay> : modalStack}
     </ModalContext.Provider>
   )
 }

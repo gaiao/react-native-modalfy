@@ -145,7 +145,10 @@ const ModalProvider = ({ children, stack }: Props) => {
   
   return (
     <ModalContext.Provider value={contextValue}>
-      {Platform.OS === 'ios' ? <FullWindowOverlay>{modalStack}</FullWindowOverlay> : modalStack}
+      <>
+        {children}
+        {Platform.OS === 'ios' ? <FullWindowOverlay>{modalStack}</FullWindowOverlay> : modalStack}
+      </>
     </ModalContext.Provider>
   )
 }

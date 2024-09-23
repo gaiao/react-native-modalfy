@@ -1,6 +1,7 @@
 import { useCallback } from 'use-memo-one'
 import { BackHandler, Platform } from 'react-native'
 import React, { ReactNode, useEffect, useRef, useState } from 'react'
+import { FullWindowOverlay } from 'react-native-screens'
 
 import type {
   SharedProps,
